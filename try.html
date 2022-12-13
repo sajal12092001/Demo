@@ -1,0 +1,77 @@
+<html>
+<head>
+	<title>Registeration form</title>
+	<link rel="stylesheet" type="text/css" href="./style1.css">
+</head>
+<body>
+	<div class="Registeration-form">
+		<h1>Registeration form</h1>
+		<form action="connect.php" method="post">
+			<p>Firstname</p>
+				<input type="text" name="Firstname" pattern="^(?=.*[a-z]).{1,24}$" placeholder="Enter Firstname" required >
+				<p>Lastname</p>
+				<input type="text" name="Lastname" pattern="^(?=.*[a-z]).{1,24}$" placeholder="Enter Lastname"required>
+				<p>Email</p>
+				<label class="emailBox">
+                    <input type="email" id="email" placeholder="Email">
+                    <span class="emailText"></span>
+                </label>
+				
+				<p>Phone number</p>
+				<input type="number" name="Phone" placeholder="Please enter Phone number">
+
+				<p>Password</p>
+				<label class="passBox">
+                    <input type="password" id="password" placeholder="password">
+                    <span class="passText"></span>
+
+                <p>Date of birth</p>
+				<input type="Date" name="DOB" placeholder="Enter DOB">
+				<p>Bio</p>
+				<input type="text" name="Bio" placeholder="Please enter bio">
+				
+				<button type="submit">Register </button>
+                 <button type="reset">Reset</button>
+				
+			</a>
+		</form>
+        <script>
+            const email = document.getElementById("email");
+            const password = document.getElementById("password");
+    
+            email.addEventListener('input',()=>{
+                const emailBox = document.querySelector('.emailBox');
+                const emailText = document.querySelector('.emailText');
+                const emailPattern = /[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$/;
+    
+                if(email.value.match(emailPattern)){
+                    emailBox.classList.add('valid');
+                    emailBox.classList.remove('invalid');
+                    emailText.innerHTML = "Your Email Address in Valid"; 
+                }else{
+                    emailBox.classList.add('invalid');
+                    emailBox.classList.remove('valid');
+                    emailText.innerHTML = "Must be a valid email address."; 
+                }
+            });
+    
+            password.addEventListener('input',()=>{
+                const passBox = document.querySelector('.passBox');
+                const passText = document.querySelector('.passText');
+                const passPattern = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
+    
+                if(password.value.match(passPattern)){
+                    passBox.classList.add('valid');
+                    passBox.classList.remove('invalid');
+                    passText.innerHTML = "Your Password in Valid"; 
+                }else{
+                    passBox.classList.add('invalid');
+                    passBox.classList.remove('valid');
+                    passText.innerHTML = "Your password must be at least 6 characters as well as contain at least one uppercase, one lowercase, and one number."; 
+                }
+            });
+        </script>
+
+	</div>
+</body>
+</html>
