@@ -130,15 +130,19 @@
     </div>
 
     <script>
+        
+
         document.getElementById("fname").addEventListener("input", checkfname);
         function checkfname() {
             const pattern = /[A-Za-z]/i;
-            let first_name = event.target.value;
+           // let first_name = event.target.value;
+           let first_name=document.getElementById("fname").value;
             if (first_name == "") {
                 document.getElementById("fnameerror").innerHTML = "First name should not be Empty";
                 document.getElementById("fname").style.borderBottom = "2px solid red"
                 document.getElementById("fnameerror").style.color = "red";
-                return false;
+                 return false;
+                
 
             }
 
@@ -147,7 +151,7 @@
                 document.getElementById("fnameerror").innerHTML = "First Name should be in alphabets";
                 document.getElementById("fname").style.borderBottom = "2px solid red"
                 document.getElementById("fnameerror").style.color = "red";
-                return false;
+                 return false;
 
             }
 
@@ -156,7 +160,7 @@
                 document.getElementById("fnameerror").innerHTML = "Valid First Name";
                 document.getElementById("fname").style.borderBottom = "2px solid green"
                 document.getElementById("fnameerror").style.color = "green";
-
+                        return true;
 
             }
 
@@ -165,7 +169,8 @@
         document.getElementById("lname").addEventListener("input", checklname);
         function checklname() {
             const pattern = /[A-Za-z]/i;
-            let last_name = event.target.value;
+            // let last_name = event.target.value;
+            let last_name = document.getElementById("lname").value;
             if (last_name == "") {
                 document.getElementById("lnameerror").innerHTML = "Last name should not be Empty";
                 document.getElementById("lname").style.borderBottom = "2px solid red"
@@ -188,16 +193,17 @@
                 document.getElementById("lnameerror").innerHTML = "Valid last Name";
                 document.getElementById("lname").style.borderBottom = "2px solid green"
                 document.getElementById("lnameerror").style.color = "green";
-
-
+                return true;
             }
 
         }
 
         document.getElementById("mobile").addEventListener("input", checkmob);
         function checkmob() {
-            const pattern = /^[0-9]+$/i;
-            let mobi = event.target.value;
+            // const pattern = /^[0-9]+$/i;
+            const pattern = /^\d{10}$/i;
+            // let mobi = event.target.value;
+            let mobi = document.getElementById("mobile").value;
             if (mobi == "") {
                 document.getElementById("mobileerror").innerHTML = "Mobile should not be Empty";
                 document.getElementById("mobile").style.borderBottom = "2px solid red"
@@ -208,7 +214,7 @@
 
             else if (!pattern.test(mobi)) {
 
-                document.getElementById("mobileerror").innerHTML = "Invalid mobile";
+                document.getElementById("mobileerror").innerHTML = "Mobile Number should be 10 dogit";
                 document.getElementById("mobile").style.borderBottom = "2px solid red"
                 document.getElementById("mobileerror").style.color = "red";
                 return false;
@@ -220,7 +226,7 @@
                 document.getElementById("mobileerror").innerHTML = "Valid mobile";
                 document.getElementById("mobile").style.borderBottom = "2px solid green"
                 document.getElementById("mobileerror").style.color = "green";
-                
+                return true;
 
 
             }
@@ -230,7 +236,9 @@
         document.getElementById("bio").addEventListener("input", checkbio);
         function checkbio() {
 
-            let bio = event.target.value;
+            // let bio = event.target.value;
+            let bio = document.getElementById("bio").value;
+            
             if (bio == "") {
                 document.getElementById("bioerror").innerHTML = "Bio should not be Empty";
                 document.getElementById("bio").style.borderBottom = "2px solid red"
@@ -243,7 +251,7 @@
                 document.getElementById("bioerror").innerHTML = "Valid bio";
                 document.getElementById("bio").style.borderBottom = "2px solid green"
                 document.getElementById("bioerror").style.color = "green";
-
+                return true;
             }
 
         }
@@ -251,7 +259,8 @@
         document.getElementById("genderlist").addEventListener("click", checkgender);
         function checkgender() {
 
-            let gen = event.target.value;
+            // let gen = event.target.value;
+            let gen = document.getElementById("genderlist").value;
             if (gen == "selectgender") {
                 document.getElementById("gendererror").innerHTML = "Please select gender";
                 document.getElementById("genderlist").style.borderBottom = "2px solid red"
@@ -264,7 +273,7 @@
                 document.getElementById("gendererror").innerHTML = "";
                 document.getElementById("genderlist").style.borderBottom = "2px solid green"
                 document.getElementById("gendererror").style.color = "green";
-
+                return true;
             }
 
         }
@@ -272,7 +281,8 @@
         document.getElementById("dob").addEventListener("click", checkdob);
         function checkdob() {
 
-            let dob = event.target.value;
+            // let dob = event.target.value;
+            let dob = document.getElementById("dob").value;
             if (!dob) {
                 document.getElementById("doberror").innerHTML = "Please select date";
                 document.getElementById("dob").style.borderBottom = "2px solid red"
@@ -285,7 +295,7 @@
                 document.getElementById("doberror").innerHTML = "";
                 document.getElementById("dob").style.borderBottom = "2px solid green"
                 document.getElementById("doberror").style.color = "green";
-
+                return true;
             }
 
         }
@@ -293,20 +303,22 @@
 
         document.getElementById("email").addEventListener("input", checkmail);
         function checkmail() {
-            let email = event.target.value;
+            // let email = event.target.value;
+            let email = document.getElementById("email").value;
             if (email.includes("@") && email.includes(".")) {
 
                 document.getElementById("emailerror").innerHTML = "Valid email";
                 document.getElementById("email").style.borderBottom = "2px solid green"
                 document.getElementById("emailerror").style.color = "green";
-                return false;
+                return true;
             }
             else {
 
                 document.getElementById("emailerror").innerHTML = "Invalid email";
                 document.getElementById("email").style.borderBottom = "2px solid red"
                 document.getElementById("emailerror").style.color = "red";
-
+               
+                return false;
             }
         }
 
@@ -314,7 +326,8 @@
         document.getElementById("age").addEventListener("input", checkage);
         function checkage() {
             const pattern = /^[0-9]+$/i;
-            let age = event.target.value;
+            // let age = event.target.value;
+            let age = document.getElementById("age").value;
             if (age == "") {
                 document.getElementById("ageerror").innerHTML = "Age should not be Empty";
                 document.getElementById("age").style.borderBottom = "2px solid red"
@@ -337,7 +350,7 @@
                 document.getElementById("ageerror").innerHTML = "Valid Age";
                 document.getElementById("age").style.borderBottom = "2px solid green"
                 document.getElementById("ageerror").style.color = "green";
-
+                return true;
             }
 
         }
@@ -347,7 +360,8 @@
         function checkpass() {
             const pattern = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/i;
 
-            let pass = event.target.value;
+            // let pass = event.target.value;
+            let pass = document.getElementById("password").value;
             if (pass == "") {
                 document.getElementById("passworderror").innerHTML = "Should should not be Empty";
                 document.getElementById("password").style.borderBottom = "2px solid red"
@@ -370,7 +384,7 @@
                 document.getElementById("passworderror").innerHTML = "Valid password";
                 document.getElementById("password").style.borderBottom = "2px solid green"
                 document.getElementById("passworderror").style.color = "green";
-
+                return true;
             }
 
         }      
@@ -385,7 +399,9 @@
     <script>
 
         function fetchData() {
-            if (true) {
+            
+                 
+            if (checkfname() && checklname() && checkmob() && checkbio() && checkgender() && checkdob() && checkmail() && checkage() && checkpass()) {
 
                 let email = $("#email").val();
                 $(document).ready(function () {
@@ -441,10 +457,10 @@
 
             }
             else {
-                alert("error");
+                alert("required data");
             }
 
-
+ 
         }
 
 
@@ -512,13 +528,7 @@
 
 
 
-        //     // if (first_name == "" && last_name == "" && mobi == "" && gend == "selectgender" && dobb == "" && mail == "" && ageee == "" && psw == "") {
-        //     //     document.getElementById("span").innerHTML = "Please provide all fields";
-
-        //     //     return false;
-
-        //     // }
-
+           
 
 
 
