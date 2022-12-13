@@ -19,7 +19,7 @@ if (isset($_POST["edit"])) {
     $query = mysqli_query($conn, $sql);
     if ($query) {
 
-        header('Location: /myprojects/Demo/JAVASCRIPT/dashboard.php');
+        header('Location: dashboard.php');
     } else {
         echo "sql not rum";
     }

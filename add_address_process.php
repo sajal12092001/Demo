@@ -16,6 +16,6 @@ $query = mysqli_query($conn, $sql);
 if (!$query)
     echo "error", mysqli_error($conn);
 else {
-    header("Location: /myprojects/Demo/JAVASCRIPT/dashboard.php");
+    header("Location: dashboard.php");
 }
 ?>

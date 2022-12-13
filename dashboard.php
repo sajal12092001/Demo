@@ -17,7 +17,7 @@ $addquery = mysqli_query($conn, $addsql);
 
 if (isset($_POST["logout"])) {
     session_destroy();
-    header("location:/myprojects/Demo/try/login.php");
+    header("location:login.php");
 }
 ?>
 
