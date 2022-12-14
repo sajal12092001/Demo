@@ -11,7 +11,7 @@ $dob = $_POST["dob"];
 $bio = $_POST["bio"];
 
 
-$hashpassword = password_hash($password, PASSWORD_BCRYPT);
+$hashpassword = password_hash($password, PASSWORD_DEFAULT);
 
 
 

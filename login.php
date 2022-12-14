@@ -60,24 +60,23 @@ if (isset($_SESSION["id"])) {
     <script>
         document.getElementById("email").addEventListener("input", checkmail);
         function checkmail() {
-            let email = event.target.value;
+            let email = document.getElementById('email').value;
             if (!email.includes("@") && !email.includes(".")) {
                 document.getElementById("emailerror").innerHTML = "Invalid email";
                 document.getElementById("email").style.borderBottom = "2px solid red"
                 document.getElementById("emailerror").style.color = "red";
+                return false;
 
             }
-            else{
+            else {
                 document.getElementById("emailerror").innerHTML = "Valid email";
                 document.getElementById("email").style.borderBottom = "2px solid green"
                 document.getElementById("emailerror").style.color = "green";
-
+                return true;
 
             }
         }
     </script>
-
-
 
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
@@ -85,7 +84,7 @@ if (isset($_SESSION["id"])) {
 <script>
 
     function fetchData() {
-        if (validation()) {
+        if (checkmail()) {
 
             let email = $("#email").val();
             let pass = $("#password").val();
@@ -97,53 +96,15 @@ if (isset($_SESSION["id"])) {
                         'email': email,
                         'password': pass
                     },
-                    success: function (responseText) {
+                    success: function (data) {
+                        if (data == "yes") {
+                            alert("login successfully");
+                            location.replace("dashboard.php");
+                        }
+                        else {
 
-                        try {
-                            var flag = 0;
-                            let data = JSON.parse(responseText);
-                            console.log(data);
+                            $("#span").text("Invalid credentials");
 
-                            if (data.length > 0) {
-                                console.log(data.length);
-
-                                for (var a = 0; a < data.length; a++) {
-                                    var getmail = data[a].email;
-                                    var getpass = data[a].password;
-
-                                    console.log(getmail);
-                                    console.log("chek email: " + email);
-
-                                    console.log(getpass);
-                                    console.log("chek pass: " + pass);
-
-                                    if ((getmail == email) && (getpass == pass)) {
-
-                                        flag = 1;
-                                        console.log(true);
-                                        break;
-                                    }
-
-                                }
-
-                                if (flag == 1) {
-                                    send_Session_id(data[a].id);
-                                    console.log("flag = 0");
-
-                                    // // alert("login");
-                                    location.replace("dashboard.php");
-
-                                }
-
-                            } else {
-
-                                $("#span").text("Email or passsword is incorrect");
-                                alert("Incorrect credentials");
-                            }
-
-                        } catch (e) {
-
-                            alert(e);
                         }
                     },
                     error: function (e) {
@@ -158,46 +119,30 @@ if (isset($_SESSION["id"])) {
     }
 
 
-    function send_Session_id(id) {
 
-        $(document).ready(function () {
-            $.ajax({
-                type: "post",
-                url: "loginprocess.php",
-                data: {
-                    'id': id
-                },
-                success: function (data) {
+    // function seterror(id, error) {
+    //     element = document.getElementById(id);
+    //     element.getElementsByClassName('formerror')[0].innerHTML = error;
+    // }
+    // function validation() {
+    //     let mail = document.getElementById("email").value;
 
-                }
-            });
-        });
+    //     if (mail == "") {
+    //         seterror("mail", "Email should not be empty");
+    //         return false;
+    //     } else {
+    //         element.getElementsByClassName('formerror')[0].innerHTML = "";
 
-    }
+    //     }
 
-    function seterror(id, error) {
-        element = document.getElementById(id);
-        element.getElementsByClassName('formerror')[0].innerHTML = error;
-    }
-    function validation() {
-        let mail = document.getElementById("email").value;
+    //     let psw = document.getElementById("password").value
 
-        if (mail == "") {
-            seterror("mail", "Email should not be empty");
-            return false;
-        } else {
-            element.getElementsByClassName('formerror')[0].innerHTML = "";
+    //     if (psw == "") {
+    //         seterror("psw", "Password should not be empty");
+    //         return false;
+    //     }
 
-        }
-
-        let psw = document.getElementById("password").value
-
-        if (psw == "") {
-            seterror("psw", "Password should not be empty");
-            return false;
-        }
-
-    }
+    // }
 </script>
 
 </html>
