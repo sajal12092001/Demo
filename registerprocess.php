@@ -11,7 +11,11 @@ $dob = $_POST["dob"];
 $bio = $_POST["bio"];
 
 
-$sql = "insert into register values('null','$firstname','$lastname','$email','$mobile','$password','$gender','$age','$dob','$bio')";
+$hashpassword = password_hash($password, PASSWORD_BCRYPT);
+
+
+
+$sql = "insert into register values('null','$firstname','$lastname','$email','$mobile','$hashpassword','$gender','$age','$dob','$bio')";
 $query = mysqli_query($conn, $sql);
 if ($query) {
     // header('Location: /myprojects/Demo/JAVASCRIPT/login.php');
